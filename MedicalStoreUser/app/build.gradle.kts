@@ -70,6 +70,6 @@ dependencies {
     implementation(libs.converter.gson)
 
     implementation(libs.androidx.hilt.navigation.compose)
-    implementation ("androidx.datastore:datastore-preferences:1.1.1")
-    implementation("androidx.compose.material:material-icons-extended:1.7.4")
+    implementation (libs.androidx.datastore.preferences)
+    implementation(libs.androidx.material.icons.extended)
 }
