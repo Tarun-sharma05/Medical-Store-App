@@ -10,7 +10,7 @@ import com.example.medicalstore_admin.Network.Response.GetSpecificProductRespons
 import com.example.medicalstore_admin.Network.Response.UpdateOrderDetailsResponse
 import com.example.medicalstore_admin.Network.Response.UpdateProductResponse
 import com.example.medicalstore_admin.Network.Response.UpdateUserInfoResponse
-import com.example.medicalstore_admin.Network.Response.getSpecificUserResponse
+import com.example.medicalstore_admin.Network.Response.GetSpecificUserResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.Response
@@ -122,7 +122,7 @@ class Repository {
         }
 
 
-    suspend fun getSpecificUserRepo(userID: String): Flow<State<Response<getSpecificUserResponse>>> =
+    suspend fun getSpecificUserRepo(userID: String): Flow<State<Response<GetSpecificUserResponse>>> =
         flow {
             emit(State.Loading)
             try {

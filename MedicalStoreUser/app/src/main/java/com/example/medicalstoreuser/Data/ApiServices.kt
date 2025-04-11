@@ -1,13 +1,17 @@
 package com.example.medicalstoreuser.Data
 
+import com.example.medicalstoreuser.Data.Response.GetSpecificProductResponse
+import com.example.medicalstoreuser.Data.Response.GetSpecificUserResponse
+import com.example.medicalstoreuser.Data.Response.CreateUserResponse
+import com.example.medicalstoreuser.Data.Response.GetAllProductsResponse
+import com.example.medicalstoreuser.Data.Response.GetAllUserResponse
 import com.example.medicalstoreuser.Data.Response.LoginUserResponse
-import com.example.medicalstoreuser.Data.Response.createUserResponse
-import com.example.medicalstoreuser.Data.Response.getAllProductResponce
-import com.example.medicalstoreuser.Data.Response.getAllUserResponce
+import com.example.medicalstoreuser.Data.Response.UpdateUserResponse
 import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
+import retrofit2.http.PATCH
 import retrofit2.http.POST
 
 interface apiServices {
@@ -20,7 +24,7 @@ interface apiServices {
         @Field("phoneNumber") phoneNumber: String,
         @Field("address") address: String,
         @Field("pinCode") pinCode: String,
-    ): Response<createUserResponse>
+    ): Response<CreateUserResponse>
 
     @FormUrlEncoded
     @POST("/login")
@@ -31,8 +35,36 @@ interface apiServices {
 
 
     @GET("/getAllUsers")
-    suspend fun getAllUsers(): Response<getAllUserResponce>
+    suspend fun getAllUsers(): Response<GetAllUserResponse>
 
     @GET("/getAllProducts")
-    suspend fun getAllProducts(): Response<getAllProductResponce>
+    suspend fun getAllProducts(): Response<GetAllProductsResponse>
+
+    @FormUrlEncoded
+    @POST("/getSpecificProduct")
+    suspend fun getSpecificProduct(
+        @Field("productID") product_id: String
+    ): Response<GetSpecificProductResponse>
+
+    @FormUrlEncoded
+    @POST("/getSpecificUser")
+    suspend fun getSpecificUser(
+        @Field("userID") user_id: String
+    ): Response<GetSpecificUserResponse>
+
+
+    @FormUrlEncoded
+    @PATCH("/updateUserInfo")
+    suspend fun updateUserInfo(
+        @Field("name") name: String,
+        @Field("email") email: String,
+        @Field("phoneNumber") phone_number: String,
+        @Field("password") password: String,
+        @Field("address") address: String,
+        @Field("pinCode") pinCode: String,
+
+    ): Response<UpdateUserResponse>
+
+
+
 }

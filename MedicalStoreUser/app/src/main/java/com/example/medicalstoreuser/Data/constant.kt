@@ -1,3 +1,3 @@
 package com.example.medicalstoreuser.Data
 
-const val BASE_URL = "https://tarunsharma15.pythonanywhere.com"
+const val BASE_URL = "Base_Url"

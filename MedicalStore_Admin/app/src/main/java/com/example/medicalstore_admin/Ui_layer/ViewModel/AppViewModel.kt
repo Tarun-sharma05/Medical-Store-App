@@ -12,7 +12,7 @@ import com.example.medicalstore_admin.Network.Response.GetSpecificProductRespons
 import com.example.medicalstore_admin.Network.Response.UpdateOrderDetailsResponse
 import com.example.medicalstore_admin.Network.Response.UpdateProductResponse
 import com.example.medicalstore_admin.Network.Response.UpdateUserInfoResponse
-import com.example.medicalstore_admin.Network.Response.getSpecificUserResponse
+import com.example.medicalstore_admin.Network.Response.GetSpecificUserResponse
 import com.example.medicalstore_admin.State
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -136,7 +136,6 @@ class AppViewModel @Inject constructor(private val Repository: Repository): View
     init {
         getAllUser()
     }
-
     fun getAllUser() {
         viewModelScope.launch {
             Repository.getAllUserRepo().collect { state ->
@@ -368,14 +367,12 @@ data class UpdateUserState(
     val Loading: Boolean = false,
     val Error: String? = null,
     val Data: Response<UpdateUserInfoResponse>? = null,
-
 )
 
 data class AddProductsState(
     val Loading: Boolean = false,
     val Error: String? = null,
     val Data: Response<AddProductResponse>? = null,
-
     )
 
 
@@ -389,7 +386,6 @@ data class UpdateOrderState(
     val Loading: Boolean = false,
     val Error: String? = null,
     val Data: Response<UpdateOrderDetailsResponse>? = null,
-
     )
 
 data class GetSpecificProductState(
@@ -402,7 +398,7 @@ data class GetSpecificProductState(
 data class GetSpecificUserState(
     val Loading: Boolean = false,
     val Error: String? = null,
-    val Data: Response<getSpecificUserResponse>? = null,
+    val Data: Response<GetSpecificUserResponse>? = null,
 
     )
 

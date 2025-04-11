@@ -41,7 +41,6 @@ import com.example.medicalstore_admin.Ui_layer.ViewModel.AppViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun UpdateProductScreenUI(productID: String, viewModel: AppViewModel = hiltViewModel(), navController: NavController) {
-
     val productState by viewModel.getSpecificProductState.collectAsState()
     val productData = productState.Data?.body()
 

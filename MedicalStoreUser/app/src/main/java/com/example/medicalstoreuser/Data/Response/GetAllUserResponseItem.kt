@@ -1,6 +1,6 @@
 package com.example.medicalstoreuser.Data.Response
 
-data class getAllUserResponceItem(
+data class GetAllUserResponseItem(
     val address: String,
     val block: Int,
     val date_of_account_creation: String,

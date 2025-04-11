@@ -1,6 +1,6 @@
-package com.example.medicalstore_admin.Network.Response
+package com.example.medicalstoreuser.Data.Response
 
-data class getSpecificUserResponseItem(
+data class GetSpecificUserResponse(
     val address: String,
     val block: Int,
     val date_of_account_creation: String,

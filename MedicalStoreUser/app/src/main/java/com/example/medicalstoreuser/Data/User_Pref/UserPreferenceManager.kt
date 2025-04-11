@@ -1,6 +1,7 @@
 package com.example.medicalstoreuser.Data.User_Pref
 
 import android.content.Context
+import android.util.Log
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
@@ -17,9 +18,19 @@ private val Context.dataStore by preferencesDataStore("user_preferences")
      }
 
 
+//     suspend fun saveUserId(userId: String){
+//         context.dataStore.edit {
+//             it[USER_ID_KEY] = userId
+//         }
+//     }
+
      suspend fun saveUserId(userId: String){
-         context.dataStore.edit {
-             it[USER_ID_KEY] = userId
+         if (userId != "Bad Gateway"){
+             context.dataStore.edit {
+                 it[USER_ID_KEY] = userId
+             }
+         }else{
+             Log.e("UserPref", "Bad Gateway received, not saving userId!")
          }
      }
 

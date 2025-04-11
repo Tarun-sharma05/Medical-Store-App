@@ -9,7 +9,7 @@ import com.example.medicalstore_admin.Network.Response.GetSpecificProductRespons
 import com.example.medicalstore_admin.Network.Response.UpdateOrderDetailsResponse
 import com.example.medicalstore_admin.Network.Response.UpdateProductResponse
 import com.example.medicalstore_admin.Network.Response.UpdateUserInfoResponse
-import com.example.medicalstore_admin.Network.Response.getSpecificUserResponse
+import com.example.medicalstore_admin.Network.Response.GetSpecificUserResponse
 import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -68,7 +68,7 @@ interface ApiService {
     @POST("getSpecificUser")
     suspend fun getSpecificUser(
         @Field("userID") user_id: String
-    ): Response<getSpecificUserResponse>
+    ): Response<GetSpecificUserResponse>
 
 
     @FormUrlEncoded
@@ -91,9 +91,6 @@ interface ApiService {
     suspend fun updateProductStockDetails(
         @Field("productID") productID: String,
         @Field("product_stock") product_stock: Int,
-
     ): Response<UpdateProductResponse>
-
-
 
 }

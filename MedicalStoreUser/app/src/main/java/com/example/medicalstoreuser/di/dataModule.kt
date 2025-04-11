@@ -2,7 +2,7 @@ package com.example.medicalstoreuser.di
 
 import android.content.Context
 import com.example.medicalstoreuser.Data.User_Pref.UserPreferenceManager
-import com.example.medicalstoreuser.Domain.Repository
+import com.example.medicalstoreuser.Data.Domain.Repository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

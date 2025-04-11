@@ -1,6 +1,6 @@
 package com.example.medicalstoreuser.Data.Response
 
-data class getAllProductResponceItem(
+data class GetAllProductsResponseItem(
     val id: Int,
     val product_id: String,
     val product_name: String,

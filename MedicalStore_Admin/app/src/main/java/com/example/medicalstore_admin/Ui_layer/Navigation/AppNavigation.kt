@@ -67,10 +67,8 @@ fun AppNavigation(){
 //    }
 
     Box {
-
         Scaffold(
             bottomBar = {
-
                 NavigationBar(
                     containerColor = Color(0xFFFFFFFF),            //(0xFF00FF00),
 //                    tonalElevation = 0.dp,
@@ -83,8 +81,7 @@ fun AppNavigation(){
                     items.forEachIndexed { index, item ->
                         NavigationBarItem(
                             selected = selected == index,
-                            onClick = {
-                                selected = index
+                            onClick = { selected = index
                                 when (selected) {
                                     0 -> navController.navigate(HomeScreen)
                                     1 -> navController.navigate(OrdersScreen)

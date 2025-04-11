@@ -221,9 +221,7 @@ fun productsEachCard(
     productCompany: String,
     productDescription: String,
     productImage: String,
-    navController: NavController,
-
-
+    navController: NavController
     ){
     Card(
         modifier = Modifier

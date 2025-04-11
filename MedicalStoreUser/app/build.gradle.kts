@@ -1,10 +1,15 @@
+import org.gradle.kotlin.dsl.implementation
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    kotlin("plugin.serialization") version "2.0.20"
-    alias(libs.plugins.hilt.plugin)
-    kotlin("kapt")
+    kotlin("plugin.serialization") version "2.1.20"
+//    alias(libs.plugins.hilt.plugin)
+//    kotlin("kapt")
+    id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
+
 }
 
 android {
@@ -14,7 +19,8 @@ android {
     defaultConfig {
         applicationId = "com.example.medicalstoreuser"
         minSdk = 27
-        targetSdkVersion(rootProject.extra["defaultTargetSdkVersion"] as Int)
+//        targetSdk(rootProject.extra["defaultTargetSdkVersion"] as Int)
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -63,8 +69,9 @@ dependencies {
     implementation(libs.androidx.navigation.common)
     implementation(libs.kotlinx.serialization.json)
 
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
+    implementation("com.google.dagger:hilt-android:2.51.1")
+    ksp("com.google.dagger:hilt-android-compiler:2.51.1")
+
 
     implementation (libs.retrofit)
     implementation(libs.converter.gson)
@@ -72,4 +79,23 @@ dependencies {
     implementation(libs.androidx.hilt.navigation.compose)
     implementation (libs.androidx.datastore.preferences)
     implementation(libs.androidx.material.icons.extended)
+
+    implementation("io.coil-kt.coil3:coil-compose:3.0.4")
+    implementation("io.coil-kt.coil3:coil-network-okhttp:3.0.4")
+
+    implementation("androidx.core:core-splashscreen:1.0.1")
+    implementation("androidx.compose.material3:material3:1.3.1")
+
+    // Android Maps Compose composables for the Maps SDK for Android
+    implementation ("com.google.android.gms:play-services-location:21.3.0")
+    implementation ("com.google.android.gms:play-services-maps:19.1.0")
+
+    implementation("com.google.maps.android:maps-compose:6.5.2")
+
+    implementation("com.google.android.libraries.places:places:4.2.0")
+
+    implementation ("com.google.android.material:material:1.2.0")
+
+    implementation ("com.google.accompanist:accompanist-permissions:0.29.0-alpha")
+
 }

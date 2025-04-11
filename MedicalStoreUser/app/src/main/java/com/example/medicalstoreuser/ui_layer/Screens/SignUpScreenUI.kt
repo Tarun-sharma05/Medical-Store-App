@@ -2,7 +2,6 @@ package com.example.medicalstoreuser.ui_layer.Screens
 
 
 import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -38,15 +37,12 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.medicalstoreuser.R
 import com.example.medicalstoreuser.ui_layer.Common.MultiColorText
-import com.example.medicalstoreuser.ui_layer.Navigation.LoginScreen
+import com.example.medicalstoreuser.ui_layer.Navigation.ScreenRoutes
 import com.example.medicalstoreuser.ui_layer.ViewModel.AppViewModel
 
 
 @Composable
-fun SignUpScreenUI(
-    navController: NavController,
-    viewModel: AppViewModel = hiltViewModel()
-){
+fun SignUpScreenUI(navController: NavController, viewModel: AppViewModel = hiltViewModel()){
 
         val state = viewModel.signUpUserState.collectAsState()
            val context = LocalContext.current
@@ -224,7 +220,7 @@ fun SignUpScreenUI(
             Spacer(modifier = Modifier.height(30.dp))
            MultiColorText("Already have an account ?  ","Login", modifier = Modifier.clickable {
 
-                      navController.navigate(LoginScreen)
+                      navController.navigate(ScreenRoutes.LoginScreen)
            })
 
         }

@@ -95,8 +95,6 @@ fun HomeScreenUI(viewModel: AppViewModel = hiltViewModel(), navController: NavCo
                             fontWeight = FontWeight.Bold,
                             fontSize = 20.sp
                         )
-
-
                     }
                 },
                 actions = {
