@@ -21,8 +21,7 @@
         tools:targetApi="tiramisu">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="MAP API KEY"/>
-<!--        AIzaSyAPz9quTUkq17JY7b_9y5myxMLfF2bmMLc-->
+            android:value= ""
 
         <activity
             android:name=".MainActivity"

@@ -1,3 +1,3 @@
 package com.example.medicalstoreuser.Data
 
-const val BASE_URL = "Base_Url"
+const val BASE_URL = ""
