@@ -117,7 +117,7 @@ fun AppNavigation ( userPreferenceManager: UserPreferenceManager){
          NavHost(navController = navController, startDestination = startDestination) {
              navigation<SubNavigation.AuthNavGraph>(startDestination = ScreenRoutes.LoginScreen) {
                  composable<ScreenRoutes.LoginScreen> {
-                     LoginScreenUI(navController)
+                     LoginScreenUI(navController, userPreferenceManager= userPreferenceManager)
                  }
                  composable<ScreenRoutes.SignUpScreen> {
                      SignUpScreenUI(navController)

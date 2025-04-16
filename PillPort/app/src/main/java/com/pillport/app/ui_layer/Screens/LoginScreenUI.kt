@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.medicalstoreuser.R
+import com.pillport.app.Data.User_Pref.UserPreferenceManager
 import com.pillport.app.ui_layer.Common.MultiColorText
 import com.pillport.app.ui_layer.Navigation.ScreenRoutes
 import com.pillport.app.ui_layer.Navigation.SubNavigation
@@ -39,9 +40,11 @@ import com.pillport.app.ui_layer.ViewModel.AppViewModel
 
 
 @Composable
-fun LoginScreenUI(navController: NavController, viewModel: AppViewModel = hiltViewModel()) {
+fun LoginScreenUI(navController: NavController, viewModel: AppViewModel = hiltViewModel(), userPreferenceManager: UserPreferenceManager) {
     val state = viewModel.loginUserState.collectAsState()
-    val userId by viewModel.userId.collectAsState(initial = null)
+//    val userId by viewModel.userId.collectAsState(initial = null)
+    val userId by userPreferenceManager.userId.collectAsState(initial = null)
+
     val context = LocalContext.current
 
 
