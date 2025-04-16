@@ -1,26 +1,22 @@
 package com.example.medicalstoreuser.ui_layer.ViewModel
 
-import androidx.compose.runtime.collectAsState
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.medicalstoreuser.Data.Response.CreateUserResponse
-import com.example.medicalstoreuser.Data.Response.GetAllProductsResponse
 import com.example.medicalstoreuser.Data.Response.GetSpecificProductResponse
 import com.example.medicalstoreuser.Data.Response.GetSpecificUserResponse
 import com.example.medicalstoreuser.Data.Response.LoginUserResponse
 import com.example.medicalstoreuser.Data.User_Pref.UserPreferenceManager
 import com.example.medicalstoreuser.Data.Domain.Repository
+import com.example.medicalstoreuser.Data.Response.AddOrderResponse
+import com.example.medicalstoreuser.Data.Response.GetAllProductsResponse
 import com.example.medicalstoreuser.State
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 import retrofit2.Response
@@ -51,6 +47,8 @@ class AppViewModel @Inject constructor(private val Repository: Repository, priva
     private val _getAllProductsState = MutableStateFlow(GetAllProductsState())
     val getAllProductsState = _getAllProductsState.asStateFlow()
 
+    private val _addOrderState = MutableStateFlow(AddOrderState())
+    val addOrderState = _addOrderState.asStateFlow()
 
     // StateFlow for search query
     private val _searchQuery = MutableStateFlow("")
@@ -297,6 +295,37 @@ class AppViewModel @Inject constructor(private val Repository: Repository, priva
         }
     }
 
+    // Add New Order by User
+    fun addOrder(
+        user_id: String,
+        name: String,
+        product_name: String,
+        quantity: Int,
+        product_id: String
+    ){
+       viewModelScope.launch (Dispatchers.IO){
+          Repository.addOrderRepo(
+              user_id = user_id,
+              name =  name,
+              product_name = product_name,
+              quantity = quantity,
+              product_id = product_id
+          ).collect{
+           when(it){
+               is State.Loading->{
+                 _addOrderState.value = AddOrderState(Loading = true)
+               }
+               is State.Success -> {
+                  _addOrderState.value = AddOrderState(Data = it.data, Loading = false)
+               }
+               is State.Error -> {
+                   _addOrderState.value = AddOrderState(Error = it.message, Loading = false)
+               }
+           }
+          }
+       }
+    }
+
 
 
 
@@ -333,5 +362,11 @@ data class GetAllProductsState(
     val Loading: Boolean = false,
     val Error: String? = null,
     val Data: Response<GetAllProductsResponse>? = null,
+)
+
+data class AddOrderState(
+    val Loading: Boolean = false,
+    val Error: String? = null,
+    val Data: Response<AddOrderResponse>? = null
 )
 

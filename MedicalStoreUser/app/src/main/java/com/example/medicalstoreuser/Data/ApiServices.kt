@@ -1,5 +1,6 @@
 package com.example.medicalstoreuser.Data
 
+import com.example.medicalstoreuser.Data.Response.AddOrderResponse
 import com.example.medicalstoreuser.Data.Response.GetSpecificProductResponse
 import com.example.medicalstoreuser.Data.Response.GetSpecificUserResponse
 import com.example.medicalstoreuser.Data.Response.CreateUserResponse
@@ -64,6 +65,16 @@ interface apiServices {
         @Field("pinCode") pinCode: String,
 
     ): Response<UpdateUserResponse>
+
+    @FormUrlEncoded
+    @POST("addOrder")
+    suspend fun addOrder(
+        @Field("user_id") user_id: String,
+        @Field("name") name: String,
+        @Field("product_name") product_name: String,
+        @Field("quantity") quantity: Int,
+        @Field("product_id") product_id: String
+    ): Response<AddOrderResponse>
 
 
 

@@ -1,5 +1,6 @@
 package com.example.medicalstoreuser.ui_layer.Screens
 
+import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -107,9 +108,14 @@ fun HomeScreenUI(viewModel: AppViewModel = hiltViewModel(),navController: NavHos
 
             when {
                 getAllProductsState.Loading -> {
-                    CircularProgressIndicator()
+//                    CircularProgressIndicator()
+                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
+                        CircularProgressIndicator()
+                    }
+
                 }
                 getAllProductsState.Error != null -> {
+                    Log.d("HomeScreen Tag" , "Error ${getAllProductsState.Error.toString()}")
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
                         Text(text = getAllProductsState.Error.toString())
                     }
@@ -117,7 +123,7 @@ fun HomeScreenUI(viewModel: AppViewModel = hiltViewModel(),navController: NavHos
                 else -> {
                     Column(modifier = Modifier.fillMaxSize()) {
                         // Search Bar
-                        SearchBar(viewModel = viewModel, onProductSelected = {product ->
+                        SearchBar(viewModel = viewModel, onProductSelected = { product ->
                             // Handle product selection (e.g., navigate to product details)
                             navController.navigate(Screen.ProductDetailScreen.createRoute(productID = product.product_id))
                         } )

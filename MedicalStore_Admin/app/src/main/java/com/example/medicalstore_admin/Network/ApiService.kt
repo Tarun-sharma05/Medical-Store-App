@@ -1,5 +1,6 @@
 package com.example.medicalstore_admin.Network
 
+import com.example.medicalstore_admin.Network.Response.AddOrderResponse
 import com.example.medicalstore_admin.Network.Response.AddProductResponse
 import com.example.medicalstore_admin.Network.Response.GetAllOrdersResponse
 import com.example.medicalstore_admin.Network.Response.GetAllProductsResponse
@@ -61,7 +62,7 @@ interface ApiService {
     @FormUrlEncoded
     @POST("getSpecificProduct")
     suspend fun getSpecificProduct(
-      @Field("productID") product_id: String
+        @Field("productID") product_id: String
     ): Response<GetSpecificProductResponse>
 
     @FormUrlEncoded
@@ -92,5 +93,6 @@ interface ApiService {
         @Field("productID") productID: String,
         @Field("product_stock") product_stock: Int,
     ): Response<UpdateProductResponse>
+
 
 }

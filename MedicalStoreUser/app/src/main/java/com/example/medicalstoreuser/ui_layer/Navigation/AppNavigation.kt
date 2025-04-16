@@ -151,7 +151,8 @@ fun AppNavigation ( userPreferenceManager: UserPreferenceManager){
 
                      ProductDetailsScreenUI(
                          productID = productID.toString(),
-                         navController = navController
+                         navController = navController,
+                         userPreferenceManager = userPreferenceManager
                      )
                  }
                  composable<ScreenRoutes.EditProfileScreen> {

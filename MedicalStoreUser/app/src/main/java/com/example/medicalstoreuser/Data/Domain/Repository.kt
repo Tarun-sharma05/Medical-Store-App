@@ -4,6 +4,7 @@ import com.example.medicalstoreuser.Data.Response.CreateUserResponse
 import com.example.medicalstoreuser.Data.Response.GetSpecificProductResponse
 import com.example.medicalstoreuser.Data.Response.GetSpecificUserResponse
 import com.example.medicalstoreuser.Data.ApiProvider
+import com.example.medicalstoreuser.Data.Response.AddOrderResponse
 import com.example.medicalstoreuser.Data.Response.GetAllProductsResponse
 import com.example.medicalstoreuser.Data.Response.LoginUserResponse
 import com.example.medicalstoreuser.State
@@ -108,6 +109,27 @@ class Repository {
         }
     }
 
+    suspend fun addOrderRepo(
+        user_id: String,
+        name: String,
+        product_name: String,
+        quantity: Int,
+        product_id: String
+    ): Flow<State<Response<AddOrderResponse>>> = flow {
+        emit(State.Loading)
+        try {
+            val response = ApiProvider.providerApi().addOrder(
+                user_id = user_id,
+                name = name,
+                product_name = product_name,
+                quantity = quantity,
+                product_id = product_id
+            )
+            emit(State.Success(response))
+        } catch (e: Exception) {
+            emit(State.Error(e.message.toString()))
+        }
+    }
 
 
 
