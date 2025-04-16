@@ -21,8 +21,7 @@
         tools:targetApi="tiramisu">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBaZ96LTqyP4GyX2JfynpZSQwC4TsE2rPQ"/>
-<!--        AIzaSyAPz9quTUkq17JY7b_9y5myxMLfF2bmMLc-->
+            android:value=""/>
 
         <activity
             android:name="com.pillport.app.MainActivity"

@@ -24,6 +24,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -39,12 +41,14 @@ import com.pillport.app.ui_layer.Screens.ProductDetailsScreenUI
 import com.pillport.app.ui_layer.Screens.ProductScreenUI
 import com.pillport.app.ui_layer.Screens.ProfileScreenUI
 import com.pillport.app.ui_layer.Screens.SignUpScreenUI
+import com.pillport.app.ui_layer.ViewModel.AppViewModel
 
 
 @Composable
-fun AppNavigation ( userPreferenceManager: UserPreferenceManager){
+fun AppNavigation (viewModel: AppViewModel = hiltViewModel(), userPreferenceManager: UserPreferenceManager){
     val navController = rememberNavController()
-    val userid by userPreferenceManager.userId.collectAsState(initial = null)
+//    val userid by userPreferenceManager.userId.collectAsState(initial = null)
+    val userid by viewModel.userId.collectAsState(initial = null)
     Log.d("TAG", "AppNavigation: userid = $userid")
 
     val startDestination = if (userid.isNullOrEmpty() || userid == "Bad Gateway" || userid == "Invalid User") {
@@ -117,7 +121,7 @@ fun AppNavigation ( userPreferenceManager: UserPreferenceManager){
          NavHost(navController = navController, startDestination = startDestination) {
              navigation<SubNavigation.AuthNavGraph>(startDestination = ScreenRoutes.LoginScreen) {
                  composable<ScreenRoutes.LoginScreen> {
-                     LoginScreenUI(navController)
+                     LoginScreenUI(navController, userPreferenceManager= userPreferenceManager)
                  }
                  composable<ScreenRoutes.SignUpScreen> {
                      SignUpScreenUI(navController)

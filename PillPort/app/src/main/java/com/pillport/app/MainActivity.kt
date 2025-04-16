@@ -36,7 +36,7 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 Scaffold(modifier = Modifier.Companion.fillMaxSize()) { innerPadding ->
 
-                    AppNavigation(userPreferenceManager)
+                    AppNavigation(viewModel,userPreferenceManager)
 
 
                 }

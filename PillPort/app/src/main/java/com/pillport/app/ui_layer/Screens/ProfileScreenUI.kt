@@ -44,7 +44,8 @@ import com.pillport.app.ui_layer.ViewModel.AppViewModel
 @Composable
 fun ProfileScreenUI(viewModel: AppViewModel = hiltViewModel(), navController: NavHostController, userPreferenceManager: UserPreferenceManager) {
 
-    val userId by viewModel.userId.collectAsState(initial = null)
+//    val userId by viewModel.userId.collectAsState(initial = null)
+       val userId by userPreferenceManager.userId.collectAsState(initial = null)
     val userState by viewModel.getSpecificUserState.collectAsState()
     val userData = userState.Data?.body()
 
@@ -140,7 +141,8 @@ fun ProfileScreenUI(viewModel: AppViewModel = hiltViewModel(), navController: Na
 //        }
 
         /////////////////////////////////////////////
-        userData != null -> {
+//        userData
+               userState.Data != null -> {
             Log.d("ProfileScreenUI", "User Data: $userData")
 
             // Use safe calls to prevent crashes

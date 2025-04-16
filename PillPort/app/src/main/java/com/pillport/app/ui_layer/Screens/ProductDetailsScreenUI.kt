@@ -117,8 +117,9 @@ fun ProductDetailsScreenUI(productID: String, viewModel: AppViewModel = hiltView
                     quantity = quantity,
                     product_id = product_id.toString()
                 )
-                Toast.makeText(context, "Order placed!", Toast.LENGTH_SHORT).show()
-            },
+//                Toast.makeText(context, "Order placed!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "${addOrderState.value.Data?.body()?.message}", Toast.LENGTH_SHORT).show()
+                        },
             userID = user_id.toString(),
             productID = product_id.toString(),
             name = name.toString(),
@@ -135,7 +136,7 @@ fun ProductDetailsScreenUI(productID: String, viewModel: AppViewModel = hiltView
             }
         }
         addOrderState.value.Data != null -> {
-            Toast.makeText(context, "${addOrderState.value.Data?.body()?.message}", Toast.LENGTH_SHORT).show()
+
 
             LaunchedEffect(addOrderState.value.Data) {
 ////                user_id = ""
